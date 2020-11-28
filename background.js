@@ -64,21 +64,26 @@ function getBlockList() {
     });
 };
 
+// skips songs that are blocked
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    console.log('updated from background' + tab.title);
     
-    chrome.storage.sync.get('blockList', function(result) {
-        var blockArray = result.blockList;
-        if (typeof blockArray !== 'undefined' && blockArray.includes(tab.title)) {
-            //skips song
-            console.log('Previously Blocked Song is Skipped: ' + tab.title);
-            chrome.tabs.executeScript(tab.id, {code: 'document.querySelector(".spoticon-skip-forward-16").click()'});
-            console.log('song skipped');
-            
-        } else {
-            console.log('Nothing');
-        }
-    });
+    if(tab.url.startsWith('https://open.spotify.com')) {
+        chrome.storage.sync.get('blockList', function(result) {
+            var blockArray = result.blockList;
+            console.log(blockArray);
+            if (typeof blockArray !== 'undefined' && blockArray.includes(tab.title)) {
+                //skips song
+                console.log('Previously Blocked Song is Skipped: ' + tab.title);
+                chrome.tabs.executeScript(tab.id, {code: 'document.querySelector(".spoticon-skip-forward-16").click()'});
+                console.log('song skipped');
+                
+            } else {
+                console.log('Nothing');
+            }
+        });
+    };
+    console.log('Not Spotify');
+    
 });
 
 // If commmand inputs are inputted by the user, onCommand is called

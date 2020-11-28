@@ -33,10 +33,10 @@ function deleteSong(songTitle) {
     });
 };
 
+// deletes the nearby table row
 $(document).ready(function() {
     $("button").click(function(){
         $(this).closest("tr").remove();
         deleteSong(this.id);
-        //clearBlockedList();
     });
 });
