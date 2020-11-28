@@ -9,4 +9,4 @@ Google Chrome Extension that adds quality of life features to Spotify’s Web Pl
 
 Skip: CTRL + U
 
-SKip & Block: CTRL + P
+Skip & Block: CTRL + P
