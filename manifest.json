@@ -1,0 +1,54 @@
+{
+    "name": "Spotify-Web-Blocker",
+    "description": "Can block a song in a playlist globally",
+    "version": "1.0",
+    "manifest_version": 2,
+    "icons": {
+        "128": "images/icon128.png"
+    },
+
+    "browser_action": {
+        "description": "Skip Song",
+        "default_icon": "images/icon128.png",
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "persistent": false,
+        "scripts": [
+            "background.js"
+        ]
+    },
+
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": false
+    },
+
+    "commands": {
+        "skip": {
+            "description": "Skip song",
+            "suggested_key": "Alt+U"
+        },
+        "play-pause": {
+            "description": "Play or Pause song",
+            "suggested_key": "Alt+I"
+        },
+        "previous": {
+            "description": "Previous song",
+            "suggested_key": "Alt+O"
+        },
+        "block": {
+            "description": "Blacklist and Skip song",
+            "suggested_key": "Alt+P"
+        }
+    },
+
+    "permissions": [
+        "contextMenus",
+        "tabs",
+        "storage",
+        "activeTab",
+        "https://open.spotify.com/*"
+    ]
+}
